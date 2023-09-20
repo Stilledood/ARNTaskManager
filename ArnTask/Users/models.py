@@ -19,6 +19,32 @@ class User(AbstractUser):
             self.role = self.base_role
             return super().save(*args, **kwargs)
 
+class AgentVanzari(User):
+    '''Class to create a model for sales users'''
+
+    base_role = User.Role.SALES
+
+    class Meta:
+        proxy = True
+
+class ManagerDepozit(User):
+    '''Class to create a model for warehouse manager users'''
+
+    base_role = User.Role.WAREHOUSE_MANAGER
+
+    class Meta:
+        proxy = True
+
+
+class ManipulatorDepozit(User):
+    '''Class to create a model for warehouse worker user'''
+
+    base_role = User.Role.WAREHOUSE_WORKER
+
+    class Meta:
+        proxy = True
+
+
 
 
 
