@@ -31,7 +31,7 @@ class AgentVanzari(User):
     '''Class to create a model for sales users'''
 
     base_role = User.Role.SALES
-    objects = AgentVanzariManager()
+    vanzari = AgentVanzariManager()
 
     class Meta:
         proxy = True
@@ -49,7 +49,7 @@ class ManagerDepozit(User):
     '''Class to create a model for warehouse manager users'''
 
     base_role = User.Role.WAREHOUSE_MANAGER
-    objects = MangerDepozitManager()
+    depomanager = MangerDepozitManager()
 
     class Meta:
         proxy = True
@@ -67,7 +67,7 @@ class ManipulatorDepozit(User):
     '''Class to create a model for warehouse worker user'''
 
     base_role = User.Role.WAREHOUSE_WORKER
-    objects = ManipulatorDepozitManager()
+    manipulator = ManipulatorDepozitManager()
 
     class Meta:
         proxy = True

@@ -90,7 +90,7 @@ class Task(models.Model):
     extra_observatii = models.TextField(blank=True)
     informatii_factura = models.CharField(max_length=250, choices=InformatiiFactura.choices)
     timp_factura = models.CharField(max_length=50, choices=PrepTime.choices)
-    manipulator = models.ForeignKey(ManipulatorDepozit,on_delete=models.DO_NOTHING,related_name='manipulator')
+    manipulator = models.ManyToManyField(ManipulatorDepozit)
     confirmare_manipulare = models.CharField(max_length=100, choices=ConfirmareManipulare.choices, blank=True)
     status_pregatire_produse = models.CharField(max_length=250, choices=StatusComanda.choices,default=StatusComanda.STATUS_A)
     status_ambalare = models.CharField(max_length=250,default="Produsele sunt ambalate si depozitate")
@@ -98,7 +98,13 @@ class Task(models.Model):
     volum_comanda= models.CharField(max_length=100, choices=VolumComanda.choices, blank=True)
     status_preluare = models.CharField(max_length=150, choices=StatusPreluare.choices, blank=True)
 
-
+    is_created_by_sales = models.BooleanField(default=False)
+    processed_by_warehouse_manager = models.BooleanField(default=False)
+    in_work = models.BooleanField(default=False)
+    problems_detected = models.BooleanField(default=False)
+    is_ready = models.BooleanField(default=False)
+    is_delivered = models.BooleanField(default=False)
+    order_status = models.BooleanField(default=False)
 
 
     def __str__(self):
